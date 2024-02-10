@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Isa Fichtinger's Page</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f0f0f0;
+      }
+      .container {
+        max-width: 800px;
+        margin: auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      p {
+        color: #333;
+        line-height: 1.6;
+        text-align: left; /* Explicitly set text-align to left if needed */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- <p> -->
+      <!--   Hi, my name is Isa. I like to code & learn about computer security. I -->
+      <!--   really like GNU+Linux. -->
+      <!-- </p> -->
+      <!-- <p> -->
+      <!--   I'm in my fifth year of pursuing a bachelor's of computing science at -->
+      <!--   Queen's University in Ontario. -->
+      <!-- </p> -->
+      <div id="readme"></div>
+      <a href="https://github.com/isafic">GitHub</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      function b64DecodeUnicode(str) {
+        // Base64 decode the string, explicitly convert it to a byte array,
+        // then decode the byte array to a string using the UTF-8 encoding.
+        return decodeURIComponent(
+          Array.prototype.map
+            .call(atob(str), function (c) {
+              return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+            })
+            .join(""),
+        );
+      }
+      async function loadReadme() {
+        const owner = "isafic"; // GitHub username
+        const repo = "isafic"; // Repository name
+        const path = "README.md"; // Path to README.md in the repository
+
+        const response = await fetch(
+          `https://api.github.com/repos/${owner}/${repo}/contents/${path}`,
+        );
+        const data = await response.json();
+        // const content = atob(data.content); // Decode base64 content
+        const content = b64DecodeUnicode(data.content);
+        const html = marked.parse(content); // Convert Markdown to HTML
+
+        document.getElementById("readme").innerHTML = html;
+      }
+
+      loadReadme();
+    </script>
+  </body>
+</html>
