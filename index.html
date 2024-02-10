@@ -3,29 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="github-markdown.css" />
     <title>Isa Fichtinger's Page</title>
 
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
-        background-color: #f0f0f0;
+      .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
       }
-      .container {
-        max-width: 800px;
-        margin: auto;
-        background-color: #fff;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-      p {
-        color: #333;
-        line-height: 1.6;
-        text-align: left; /* Explicitly set text-align to left if needed */
+
+      @media (max-width: 767px) {
+        .markdown-body {
+          padding: 15px;
+        }
       }
     </style>
   </head>
-  <body>
+  <body class="markdown-body">
     <div class="container">
       <!-- <p> -->
       <!--   Hi, my name is Isa. I like to code & learn about computer security. I -->
@@ -35,8 +32,7 @@
       <!--   I'm in my fifth year of pursuing a bachelor's of computing science at -->
       <!--   Queen's University in Ontario. -->
       <!-- </p> -->
-      <div id="readme"></div>
-      <a href="https://github.com/isafic">GitHub</a>
+      <div id="readme" class="markdown-body"></div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
